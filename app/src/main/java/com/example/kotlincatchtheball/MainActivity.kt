@@ -39,13 +39,19 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        object : CountDownTimer(15000,1000){
+        object : CountDownTimer(15500,1000){
             override fun onTick(millisUntilFinished: Long) {
                 timertw.text = "Time : " + millisUntilFinished/1000
             }
 
             override fun onFinish() {
                 timertw.text = "Time : 0"
+
+                handler.removeCallbacks(runnable)
+
+                for (i in imageArray){
+                    i.visibility = View.INVISIBLE
+                }
 
                 val alert = AlertDialog.Builder(this@MainActivity)
                 alert.setTitle("game over")
